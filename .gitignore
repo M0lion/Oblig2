@@ -45,3 +45,6 @@ Temporary Items
 
 #java binaries
 *.class
+
+#input fiels
+*.txt
