@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.Stack;
+import java.io.PrintStream;
 
 
 public class Graph 
@@ -67,7 +68,7 @@ public class Graph
 	}
 
 	//simulates doing the tasks and prints result
-	public void start()
+	public void start(PrintStream out)
 	{
 		int time = 0;
 		int nextUpdate = 0;
@@ -102,26 +103,26 @@ public class Graph
 			
 			if(!started.empty() || !finished.empty())
 			{
-				System.out.println("Time: " + time + "\tCurrent staff: " + manpower);
+				out.println("Time: " + time + "\tCurrent staff: " + manpower);
 
 				while(!finished.empty())
-					System.out.println("\tFinished: " + finished.pop().id);
+					out.println("\tFinished: " + finished.pop().id);
 				while(!started.empty())
-					System.out.println("\tStarted: " + started.pop().id);
+					out.println("\tStarted: " + started.pop().id);
 			}
 			
 			time++;
 		}
 		
-		System.out.println();
+		out.println();
 	}
 	
-	public void printCritcals()
+	public void printCritcals(PrintStream out)
 	{
 		for(int i = 0; i < countTasks; i++)
 		{
 			if(Tasks[i].earliestStart == Tasks[i].latestStart)
-				Tasks[i].print();
+				Tasks[i].print(out);
 		}
 	}
 	
@@ -179,16 +180,16 @@ public class Graph
 			Initialize(input, graph);
 		}
 		
-		private void print()
+		private void print(PrintStream out)
 		{
-			System.out.println("ID: " + id + "\nName: " + name + "\nTime: " +  time + "\nStaff: " + "\nSlack: 0\nLatest start: " + latestStart);
-			System.out.print("Tasks depending on this:");
+			out.println("ID: " + id + "\nName: " + name + "\nTime: " +  time + "\nStaff: " + "\nSlack: 0\nLatest start: " + latestStart);
+			out.print("Tasks depending on this:");
 			
 			for(int i = 0; i < outEdges.length; i++)
 			{
-				System.out.print(" " + outEdges[i].to);
+				out.print(" " + outEdges[i].to);
 			}
-			System.out.println("\n");
+			out.println("\n");
 		}
 		
 		private void calcEarliestStartTime()
@@ -268,7 +269,7 @@ public class Graph
 					break;
 				case 1:
 					status = 2;
-					System.out.println("Loop found in in theese tasks:");
+					System.out.println("Loop found in theese tasks:");
 					return 2;
 			}
 			
