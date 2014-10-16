@@ -1,7 +1,0 @@
-Everything runs fine
-
-Compile:
-javac *.java
-
-Run:
-java Oblig2 <input file>
