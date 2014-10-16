@@ -104,10 +104,10 @@ public class Graph
 			{
 				System.out.println("Time: " + time + "\tCurrent staff: " + manpower);
 
-				while(!started.empty())
-					System.out.println("\tStarted: " + started.pop().id);
 				while(!finished.empty())
 					System.out.println("\tFinished: " + finished.pop().id);
+				while(!started.empty())
+					System.out.println("\tStarted: " + started.pop().id);
 			}
 			
 			time++;
@@ -188,7 +188,7 @@ public class Graph
 			{
 				System.out.print(" " + outEdges[i].to);
 			}
-			System.out.println();
+			System.out.println("\n");
 		}
 		
 		private void calcEarliestStartTime()
